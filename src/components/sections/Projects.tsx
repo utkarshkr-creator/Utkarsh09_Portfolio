@@ -10,7 +10,7 @@ export const Projects: React.FC = () => {
     {
       title: "Real-Time Trading Engine",
       subtitle: "High-Frequency Trading System",
-      tech: ['Go', 'Microservices', 'gRPC', 'Kafka', 'PostgreSQL', 'Redis'],
+      tech: ['Node.js', 'Next.js','TypeScript','Docker','WebSocket','Microservices', 'Socket.IO', 'Express.js', 'PostgreSQL', 'Redis'],
       points: [
         "Engineered a high-throughput trading engine capable of processing 5000+ orders/sec with sub-millisecond latency",
         "Implemented event-driven microservices architecture using Kafka for reliable order matching and trade execution",
@@ -22,7 +22,7 @@ export const Projects: React.FC = () => {
     {
       title: "FinPay Wallet",
       subtitle: "Digital Payment Solution",
-      tech: ['React', 'Node.js', 'PostgreSQL', 'Turbo Repo', 'Docker', 'CI/CD'],
+      tech: ['React', 'Node.js', 'PostgreSQL', 'Turbo Repo', 'Docker'],
       points: [
         "Developed a comprehensive digital wallet with P2P payments and bank transfers using secure webhook handlers",
         "Architected a scalable monorepo system reducing build times by 30% through optimized dependency management",

@@ -39,11 +39,11 @@ export const Hero: React.FC = () => {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-secondary/20 rounded-full blur-[100px] -z-10 animate-pulse delay-1000"></div>
 
       {/* Hero Layout: Image left, content right */}
-      <div className="container mx-auto px-6 flex flex-row items-center justify-center gap-8">
+      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-8">
         {/* Profile Image */}
-        <div className="w-80 h-80 rounded-full p-1 bg-gradient-to-br from-accent-primary to-accent-secondary group">
-          <div className="w-full h-full rounded-full bg-bg-secondary overflow-hidden relative">
-            <img src="/profile.png" alt="Utkarsh Kumar" className="w-full h-full object-cover" />
+        <div className="w-48 h-48 md:w-80 md:h-80 rounded-lg p-1 bg-gradient-to-br from-accent-primary to-accent-secondary group">
+          <div className="w-full h-full rounded-lg bg-bg-secondary overflow-hidden relative">
+            <img src="/profile.png" alt="Utkarsh Kumar" className="w-full h-full object-cover object-[0%_1px]" />
             <div className="absolute inset-0 bg-accent-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
         </div>

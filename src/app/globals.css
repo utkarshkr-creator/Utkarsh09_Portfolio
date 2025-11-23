@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-bg-primary text-text-primary font-sans antialiased overflow-x-hidden;
+    @apply bg-bg-secondary text-text-primary font-sans antialiased overflow-x-hidden;
   }
 }
 
@@ -18,14 +18,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(250, 20%, 10%);
+  background: #F5F5F5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(250, 20%, 16%);
+  background: #BDBDBD;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(280, 80%, 65%);
+  background: #6200EE;
 }

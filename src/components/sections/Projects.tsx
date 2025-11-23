@@ -124,7 +124,7 @@ export const Projects: React.FC = () => {
           <GlassCard key={index} className="flex flex-col h-full group hover:border-accent-primary/40">
             <div className="mb-4">
               <div className="flex justify-between items-start mb-2">
-                <h3 className="text-xl font-bold text-accent-primary group-hover:text-white transition-colors">
+                <h3 className="text-xl font-bold text-text-primary group-hover:text-accent-primary transition-colors">
                   {project.title}
                 </h3>
                 <div className="flex gap-2">
@@ -173,7 +173,7 @@ export const Projects: React.FC = () => {
                   href={project.demo} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-accent-secondary hover:text-white transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-accent-secondary hover:text-accent-primary transition-colors"
                 >
                   Live Demo <FiExternalLink size={12} />
                 </a>
@@ -182,7 +182,7 @@ export const Projects: React.FC = () => {
                 href={project.github} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center gap-2 text-sm font-semibold text-accent-primary hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-accent-primary hover:text-accent-secondary transition-colors"
               >
                 View Source <FaArrowRight size={12} />
               </a>

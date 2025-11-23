@@ -35,8 +35,8 @@ export const Hero: React.FC = () => {
   return (
     <section className="min-h-screen flex items-center pt-20 relative overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-primary/20 rounded-full blur-[100px] -z-10 animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-secondary/20 rounded-full blur-[100px] -z-10 animate-pulse delay-1000"></div>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-primary/10 rounded-full blur-[100px] -z-10 animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-secondary/10 rounded-full blur-[100px] -z-10 animate-pulse delay-1000"></div>
 
       {/* Hero Layout: Image left, content right */}
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-8">
@@ -50,7 +50,7 @@ export const Hero: React.FC = () => {
 
         {/* Text Content */}
         <div className="text-center md:text-left">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-text-primary to-text-secondary">
             Hi, I'm Utkarsh Kumar
           </h1>
           {/* Typing Animation */}

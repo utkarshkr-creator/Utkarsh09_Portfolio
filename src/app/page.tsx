@@ -14,7 +14,7 @@ import { Footer } from '../components/sections/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary font-sans">
+    <main className="min-h-screen bg-gradient-to-br from-bg-secondary via-bg-primary to-bg-secondary dark:bg-[#0a0a0a] text-text-primary font-sans">
       <Navbar />
       <Hero />
       <About />

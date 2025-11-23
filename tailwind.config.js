@@ -1,21 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    darkMode: 'class',
     content: [
         "./src/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
         extend: {
             colors: {
-                'bg-primary': '#FFFFFF', // Surface
-                'bg-secondary': '#F5F5F5', // Background
-                'bg-tertiary': '#EEEEEE', // Slightly darker background
-                'accent-primary': '#6200EE', // Primary - Deep Purple
-                'accent-secondary': '#03DAC6', // Secondary - Teal
-                'text-primary': '#121212', // High Emphasis
-                'text-secondary': '#616161', // Medium Emphasis
-                'text-muted': '#9E9E9E', // Disabled / Hint
-                'glass-bg': 'rgba(255, 255, 255, 0.9)', // Kept for compatibility but made opaque
-                'glass-border': 'rgba(0, 0, 0, 0.12)', // Light border
+                'bg-primary': 'var(--bg-primary)',
+                'bg-secondary': 'var(--bg-secondary)',
+                'bg-tertiary': 'var(--bg-tertiary)',
+                'accent-primary': 'var(--accent-primary)',
+                'accent-secondary': 'var(--accent-secondary)',
+                'text-primary': 'var(--text-primary)',
+                'text-secondary': 'var(--text-secondary)',
+                'text-muted': 'var(--text-muted)',
+                'glass-bg': 'var(--glass-bg)',
+                'glass-border': 'var(--glass-border)',
             },
             boxShadow: {
                 'material-1': '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',

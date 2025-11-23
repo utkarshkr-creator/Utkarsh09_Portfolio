@@ -3,6 +3,42 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Light Mode Colors */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F5F5F5;
+    --bg-tertiary: #EEEEEE;
+    --text-primary: #121212;
+    --text-secondary: #616161;
+    --text-muted: #9E9E9E;
+    --accent-primary: #6200EE;
+    --accent-secondary: #03DAC6;
+    --glass-bg: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(0, 0, 0, 0.12);
+  }
+
+  .dark {
+    /* Dark Mode Colors (Painting Theme) */
+    --bg-primary: #1a1a1a;
+    /* Card Background */
+    --bg-secondary: #0a0a0a;
+    /* Main Canvas Background */
+    --bg-tertiary: #2a1a4a;
+    /* Hover/Accent Backgrounds */
+    --text-primary: #F3F4F6;
+    /* Gray 100 */
+    --text-secondary: #D1D5DB;
+    /* Gray 300 */
+    --text-muted: #9CA3AF;
+    /* Gray 400 */
+    --accent-primary: #6200EE;
+    /* Deep Purple */
+    --accent-secondary: #03DAC6;
+    /* Teal */
+    --glass-bg: rgba(10, 10, 10, 0.95);
+    --glass-border: #6200EE;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -18,14 +54,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #F5F5F5;
+  background: var(--bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #BDBDBD;
+  background: var(--text-muted);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6200EE;
+  background: var(--accent-primary);
 }

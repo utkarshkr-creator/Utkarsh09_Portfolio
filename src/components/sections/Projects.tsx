@@ -121,10 +121,10 @@ export const Projects: React.FC = () => {
     <Section id="projects" title="Projects">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project, index) => (
-          <GlassCard key={index} className="flex flex-col h-full group hover:border-accent-primary/40">
+          <GlassCard key={index} className="flex flex-col h-full group hover:border-accent-primary/40 transition-all duration-300">
             <div className="mb-4">
               <div className="flex justify-between items-start mb-2">
-                <h3 className="text-xl font-bold text-text-primary group-hover:text-accent-primary transition-colors">
+                <h3 className="text-xl font-bold text-text-primary dark:text-[#03DAC6] group-hover:text-accent-primary dark:group-hover:text-[#BB86FC] transition-colors">
                   {project.title}
                 </h3>
                 <div className="flex gap-2">
@@ -133,7 +133,7 @@ export const Projects: React.FC = () => {
                       href={project.demo} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-text-muted hover:text-accent-secondary transition-colors"
+                      className="text-text-muted dark:text-gray-400 hover:text-accent-secondary transition-colors"
                       title="Live Demo"
                     >
                       <FiExternalLink size={18} />
@@ -143,17 +143,17 @@ export const Projects: React.FC = () => {
                     href={project.github} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-text-muted hover:text-accent-primary transition-colors"
+                    className="text-text-muted dark:text-gray-400 hover:text-accent-primary transition-colors"
                     title="View Source"
                   >
                     <FaGithub size={20} />
                   </a>
                 </div>
               </div>
-              <p className="text-sm text-text-muted mb-3">{project.subtitle}</p>
+              <p className="text-sm text-text-muted dark:text-gray-400 mb-3">{project.subtitle}</p>
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tech.map((tech) => (
-                  <Badge key={tech} className="bg-accent-primary/5 border-accent-primary/10 text-accent-primary/80">
+                  <Badge key={tech} className="bg-accent-primary/5 border-accent-primary/10 text-accent-primary/80 dark:bg-[#2a1a4a] dark:border-[#6200EE] dark:text-[#BB86FC]">
                     {tech}
                   </Badge>
                 ))}
@@ -161,7 +161,7 @@ export const Projects: React.FC = () => {
             </div>
             <ul className="space-y-2 mb-6 flex-grow">
               {project.points.map((point, i) => (
-                <li key={i} className="text-sm text-text-secondary pl-4 relative">
+                <li key={i} className="text-sm text-text-secondary dark:text-gray-300 pl-4 relative">
                   <span className="absolute left-0 top-1.5 w-1.5 h-1.5 rounded-full bg-accent-primary/50"></span>
                   {point}
                 </li>

@@ -7,7 +7,7 @@ import { FaGraduationCap, FaSchool } from 'react-icons/fa6';
 
 export const Education: React.FC = () => {
   return (
-    <Section id="education" title="Education" className="bg-bg-secondary">
+    <Section id="education" title="Education" className="bg-transparent">
       <div className="max-w-5xl mx-auto relative">
         {/* Timeline Container */}
         <div className="hidden md:grid grid-cols-[1fr_60px_1fr] gap-0">
@@ -20,20 +20,20 @@ export const Education: React.FC = () => {
                   IIIT
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-accent-primary">M.Tech (IT)</h3>
-                  <p className="text-lg font-semibold text-text-primary">IIIT Allahabad</p>
+                  <h3 className="text-xl font-bold text-accent-primary dark:text-[#03DAC6]">M.Tech (IT)</h3>
+                  <p className="text-lg font-semibold text-text-primary dark:text-gray-100">IIIT Allahabad</p>
                 </div>
               </div>
               <div className="flex justify-between items-center text-sm">
                 <p className="text-text-muted">2024 - 2026</p>
-                <p className="font-bold text-accent-secondary">CGPA: 9.20/10.0</p>
+                <p className="font-bold text-accent-secondary dark:text-[#BB86FC]">CGPA: 9.20/10.0</p>
               </div>
             </GlassCard>
           </div>
 
           {/* Timeline Marker 1 */}
           <div className="flex flex-col items-center relative">
-            <div className="w-5 h-5 rounded-full bg-accent-primary border-4 border-bg-secondary z-10 shadow-[0_0_0_4px_var(--bg-secondary),0_0_20px_var(--accent-primary)] mt-8"></div>
+            <div className="w-5 h-5 rounded-full bg-accent-primary border-4 border-bg-secondary dark:border-[#0a0a0a] z-10 shadow-[0_0_0_4px_#F5F5F5,0_0_20px_#6200EE] dark:shadow-[0_0_0_4px_#0a0a0a,0_0_20px_#6200EE] mt-8"></div>
             <div className="w-0.5 bg-gradient-to-b from-accent-primary to-accent-secondary flex-grow absolute top-8 bottom-[-2rem]"></div>
           </div>
 
@@ -44,7 +44,7 @@ export const Education: React.FC = () => {
 
           {/* Timeline Marker 2 */}
           <div className="flex flex-col items-center relative">
-            <div className="w-5 h-5 rounded-full bg-accent-secondary border-4 border-bg-secondary z-10 shadow-[0_0_0_4px_var(--bg-secondary),0_0_20px_var(--accent-secondary)] mt-8"></div>
+            <div className="w-5 h-5 rounded-full bg-accent-secondary border-4 border-bg-secondary dark:border-[#0a0a0a] z-10 shadow-[0_0_0_4px_#F5F5F5,0_0_20px_#03DAC6] dark:shadow-[0_0_0_4px_#0a0a0a,0_0_20px_#03DAC6] mt-8"></div>
             {/* No line below last item */}
           </div>
 
@@ -70,7 +70,7 @@ export const Education: React.FC = () => {
         {/* Mobile View */}
         <div className="md:hidden space-y-8 relative pl-8 border-l-2 border-accent-primary/30 ml-4">
           <div className="relative">
-            <div className="absolute -left-[39px] top-6 w-5 h-5 rounded-full bg-accent-primary border-4 border-bg-secondary shadow-[0_0_0_4px_var(--bg-secondary)]"></div>
+            <div className="absolute -left-[39px] top-6 w-5 h-5 rounded-full bg-accent-primary border-4 border-bg-secondary dark:border-[#0a0a0a] shadow-[0_0_0_4px_#F5F5F5] dark:shadow-[0_0_0_4px_#0a0a0a]"></div>
             <GlassCard>
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-accent-primary to-accent-secondary flex items-center justify-center text-lg font-bold text-white shrink-0">
@@ -89,7 +89,7 @@ export const Education: React.FC = () => {
           </div>
 
           <div className="relative">
-            <div className="absolute -left-[39px] top-6 w-5 h-5 rounded-full bg-accent-secondary border-4 border-bg-secondary shadow-[0_0_0_4px_var(--bg-secondary)]"></div>
+            <div className="absolute -left-[39px] top-6 w-5 h-5 rounded-full bg-accent-secondary border-4 border-bg-secondary dark:border-[#0a0a0a] shadow-[0_0_0_4px_#F5F5F5] dark:shadow-[0_0_0_4px_#0a0a0a]"></div>
             <GlassCard>
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-accent-secondary to-accent-primary flex items-center justify-center text-lg font-bold text-white shrink-0">
@@ -110,7 +110,7 @@ export const Education: React.FC = () => {
 
         {/* Previous Education */}
         <div className="mt-16">
-          <h3 className="text-2xl font-bold text-center mb-8 text-text-secondary flex items-center justify-center gap-3">
+          <h3 className="text-2xl font-bold text-center mb-8 text-text-secondary dark:text-[#03DAC6] flex items-center justify-center gap-3">
             <FaSchool /> Schooling
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -120,7 +120,7 @@ export const Education: React.FC = () => {
               </div>
               <div>
                 <h4 className="text-lg font-bold text-text-primary">Intermediate (12th)</h4>
-                <p className="text-text-secondary">Gurukul Vidyapeeth, CBSE Board</p>
+                <p className="text-text-secondary dark:text-gray-300">Gurukul Vidyapeeth, CBSE Board</p>
                 <p className="text-sm text-text-muted mt-1">83.4%</p>
               </div>
             </GlassCard>

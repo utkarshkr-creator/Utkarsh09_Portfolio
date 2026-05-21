@@ -1,195 +1,201 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Section } from '../ui/Section';
-import { GlassCard } from '../ui/GlassCard';
 import { Badge } from '../ui/Badge';
-import { FaGithub, FaArrowRight } from 'react-icons/fa6';
+import { FaGithub, FaArrowRight, FaImage, FaXmark } from 'react-icons/fa6';
 import { FiExternalLink } from 'react-icons/fi';
+import { getFeaturedProjects, Project } from '@/db';
+import Link from 'next/link';
+import { ScrollReveal } from '../ui/ScrollReveal';
 
-export const Projects: React.FC = () => {
-  const projects = [
-    {
-      title: "Real-Time Trading Engine",
-      subtitle: "High-Frequency Trading System",
-      tech: ['Node.js', 'Next.js','TypeScript','Docker','WebSocket','Microservices', 'Socket.IO', 'Express.js', 'PostgreSQL', 'Redis'],
-      points: [
-        "Engineered a high-throughput trading engine capable of processing 5000+ orders/sec with sub-millisecond latency",
-        "Implemented event-driven microservices architecture using Kafka for reliable order matching and trade execution",
-        "Optimized database performance handling 1500+ concurrent transactions/sec with data consistency"
-      ],
-      github: "https://github.com/utkarshkr-creator/REAL-TIME-TRADING-ENGINE",
-      demo: null
-    },
-    {
-      title: "FinPay Wallet",
-      subtitle: "Digital Payment Solution",
-      tech: ['React', 'Node.js', 'PostgreSQL', 'Turbo Repo', 'Docker'],
-      points: [
-        "Developed a comprehensive digital wallet with P2P payments and bank transfers using secure webhook handlers",
-        "Architected a scalable monorepo system reducing build times by 30% through optimized dependency management",
-        "Integrated robust authentication and transaction logging for financial security compliance"
-      ],
-      github: "https://github.com/utkarshkr-creator/FinPay-Wallet",
-      demo: null
-    },
-    {
-      title: "PeerStream",
-      subtitle: "P2P Video Streaming",
-      tech: ['WebRTC', 'Socket.IO', 'Node.js', 'React'],
-      points: [
-        "Built a real-time video streaming application enabling direct peer-to-peer communication",
-        "Implemented signaling server using Socket.IO for seamless connection establishment",
-        "Optimized media streams for low-latency transmission across varying network conditions"
-      ],
-      github: "https://github.com/utkarshkr-creator/PeerStream",
-      demo: null
-    },
-    {
-      title: "Quizzeria",
-      subtitle: "Real-time Quiz Platform",
-      tech: ['Socket.IO', 'Redis', 'Node.js', 'React'],
-      points: [
-        "Developed an interactive quiz platform supporting concurrent users with real-time score updates",
-        "Implemented admin dashboard for quiz management and live leaderboard functionality",
-        "Utilized Redis for caching active game states to ensure high performance"
-      ],
-      github: "https://github.com/utkarshkr-creator/Quizzeria",
-      demo: null
-    },
-    {
-      title: "Plinko Game",
-      subtitle: "Physics-based Betting Game",
-      tech: ['Canvas API', 'React', 'Node.js', 'Physics Engine'],
-      points: [
-        "Created a Stake.com inspired betting game with custom physics engine for ball collisions",
-        "Implemented provably fair algorithm to ensure game transparency and user trust",
-        "Designed responsive UI with smooth animations for engaging user experience"
-      ],
-      github: "https://github.com/utkarshkr-creator/Plinko",
-      demo: null
-    },
-    {
-      title: "AlumConnect",
-      subtitle: "Alumni Networking Platform",
-      tech: ['MongoDB', 'Express', 'React', 'Node.js'],
-      points: [
-        "Platform for connecting alumni with students and professionals",
-        "Full-stack application with user authentication and profiles",
-        "Network building and professional connection features"
-      ],
-      github: "https://github.com/utkarshkr-creator/AlumConnect",
-      demo: null
-    },
-    {
-      title: "ZK-FingerPrint Verification",
-      subtitle: "Zero-Knowledge Biometric Authentication",
-      tech: ['Circom', 'SnarkJS', 'Node.js', 'React', 'Zero-Knowledge Proofs'],
-      points: [
-        "Implements zk-SNARKs (Groth16) for privacy-preserving fingerprint verification",
-        "Biometric authentication without revealing actual fingerprint data",
-        "Circom circuits with Powers of Tau ceremony integration"
-      ],
-      github: "https://github.com/utkarshkr-creator/ZK-FingerPrintVerification",
-      demo: null
-    },
-    {
-      title: "Medium Clone",
-      subtitle: "Full-Stack Blogging Platform",
-      tech: ['React', 'TypeScript', 'Hono', 'Cloudflare Workers', 'PostgreSQL'],
-      points: [
-        "Serverless blogging platform deployed on Cloudflare Workers",
-        "Rich text editor with markdown support and user authentication",
-        "Edge-optimized architecture for global low-latency content delivery"
-      ],
-      github: "https://github.com/utkarshkr-creator/Medium",
-      demo: "https://master--medium-utkarsh09.netlify.app/"
-    },
-    {
-      title: "Airline Management System",
-      subtitle: "Microservices-based Airline Platform",
-      tech: ['Node.js', 'Express.js', 'MySQL', 'Sequelize', 'Microservices', 'REST API'],
-      points: [
-        "Comprehensive microservices ecosystem for airline operations management",
-        "RESTful APIs for flight search, booking management, and seat reservation",
-        "Database modeling with Sequelize ORM and transaction handling"
-      ],
-      github: "https://github.com/utkarshkr-creator/Airline-Service",
-      demo: null
+// Enhanced ProjectCard component with better styling
+const renderPoint = (text: string) => {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={i} className="font-bold text-text-primary dark:text-white">{part.slice(2, -2)}</strong>;
     }
-  ];
+    return <React.Fragment key={i}>{part}</React.Fragment>;
+  });
+};
 
+interface ProjectCardProps {
+  project: Project;
+  index: number;
+  onViewArchitecture: (imagePath: string) => void;
+}
+
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onViewArchitecture }) => {
   return (
-    <Section id="projects" title="Projects">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projects.map((project, index) => (
-          <GlassCard key={index} className="flex flex-col h-full group hover:border-accent-primary/40 transition-all duration-300">
-            <div className="mb-4">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-xl font-bold text-text-primary dark:text-[#03DAC6] group-hover:text-accent-primary dark:group-hover:text-[#BB86FC] transition-colors">
-                  {project.title}
-                </h3>
-                <div className="flex gap-2">
-                  {project.demo && (
-                    <a 
-                      href={project.demo} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-text-muted dark:text-gray-400 hover:text-accent-secondary transition-colors"
-                      title="Live Demo"
-                    >
-                      <FiExternalLink size={18} />
-                    </a>
-                  )}
-                  <a 
-                    href={project.github} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-text-muted dark:text-gray-400 hover:text-accent-primary transition-colors"
-                    title="View Source"
-                  >
-                    <FaGithub size={20} />
-                  </a>
+    <ScrollReveal delay={index * 150}>
+      <div className="relative group h-full">
+        {/* Gradient border effect */}
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-accent-primary to-accent-secondary rounded-2xl opacity-0 group-hover:opacity-100 blur transition-all duration-500"></div>
+        
+        <div className="relative bg-white dark:bg-[#121212] rounded-2xl p-6 border border-gray-200 dark:border-gray-800 group-hover:border-transparent transition-all duration-300 h-full flex flex-col">
+          {/* Header with gradient accent */}
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-primary to-accent-secondary flex items-center justify-center text-white font-bold text-lg">
+                  {project.title.charAt(0)}
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-text-primary dark:text-white group-hover:text-accent-primary dark:group-hover:text-[#D4A574] transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-text-muted dark:text-gray-500">{project.subtitle}</p>
                 </div>
               </div>
-              <p className="text-sm text-text-muted dark:text-gray-400 mb-3">{project.subtitle}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech) => (
-                  <Badge key={tech} className="bg-accent-primary/5 border-accent-primary/10 text-accent-primary/80 dark:bg-[#2a1a4a] dark:border-[#6200EE] dark:text-[#BB86FC]">
-                    {tech}
-                  </Badge>
-                ))}
-              </div>
             </div>
-            <ul className="space-y-2 mb-6 flex-grow">
-              {project.points.map((point, i) => (
-                <li key={i} className="text-sm text-text-secondary dark:text-gray-300 pl-4 relative">
-                  <span className="absolute left-0 top-1.5 w-1.5 h-1.5 rounded-full bg-accent-primary/50"></span>
-                  {point}
-                </li>
-              ))}
-            </ul>
-            <div className="flex gap-3 items-center mt-auto">
+            <div className="flex gap-3">
               {project.demo && (
                 <a 
                   href={project.demo} 
                   target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-accent-secondary hover:text-accent-primary transition-colors"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-accent-secondary/10 dark:bg-[#D4A574]/10 flex items-center justify-center text-accent-secondary dark:text-[#D4A574] hover:bg-accent-secondary hover:text-white dark:hover:bg-[#D4A574] dark:hover:text-black transition-all"
+                  title="Live Demo"
                 >
-                  Live Demo <FiExternalLink size={12} />
+                  <FiExternalLink size={16} />
                 </a>
               )}
               <a 
                 href={project.github} 
                 target="_blank" 
-                rel="noopener noreferrer" 
-                className="inline-flex items-center gap-2 text-sm font-semibold text-accent-primary hover:text-accent-secondary transition-colors"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-accent-primary/10 dark:bg-[#BFA181]/20 flex items-center justify-center text-accent-primary dark:text-[#E8D5B7] hover:bg-accent-primary hover:text-white dark:hover:bg-[#BFA181] dark:hover:text-white transition-all"
+                title="View Source"
               >
-                View Source <FaArrowRight size={12} />
+                <FaGithub size={18} />
               </a>
             </div>
-          </GlassCard>
+          </div>
+
+          {/* Tech Stack */}
+          <div className="flex flex-wrap gap-2 mb-5">
+            {project.tech.slice(0, 5).map((tech) => (
+              <span 
+                key={tech} 
+                className="px-3 py-1 text-xs font-medium rounded-full bg-gradient-to-r from-accent-primary/10 to-accent-secondary/10 dark:from-[#BFA181]/20 dark:to-[#D4A574]/20 text-accent-primary dark:text-[#E8D5B7] border border-accent-primary/20 dark:border-[#BFA181]/30"
+              >
+                {tech}
+              </span>
+            ))}
+            {project.tech.length > 5 && (
+              <span className="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-800 text-text-muted">
+                +{project.tech.length - 5} more
+              </span>
+            )}
+          </div>
+
+          {/* Description Points */}
+          <ul className="space-y-3 mb-6 flex-grow">
+            {project.points.map((point, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm text-text-secondary dark:text-gray-300 leading-relaxed">
+                <span className="text-accent-primary dark:text-[#D4A574] mt-0.5 text-lg">▹</span>
+                <span>{renderPoint(point)}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Footer Actions */}
+          <div className="flex flex-wrap gap-4 pt-4 border-t border-gray-100 dark:border-gray-800 mt-auto">
+            {project.demo && (
+              <a 
+                href={project.demo} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-2 text-sm font-semibold text-accent-secondary dark:text-[#D4A574] hover:underline"
+              >
+                Live Demo <FiExternalLink size={14} />
+              </a>
+            )}
+            {project.architectureImage && (
+              <button 
+                onClick={() => onViewArchitecture(project.architectureImage!)}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:underline"
+              >
+                <FaImage size={12} /> Architecture
+              </button>
+            )}
+            <a 
+              href={project.github} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center gap-2 text-sm font-semibold text-accent-primary dark:text-[#E8D5B7] hover:underline ml-auto"
+            >
+              View Code <FaArrowRight size={12} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </ScrollReveal>
+  );
+};
+
+export const Projects: React.FC = () => {
+  const featuredProjects = getFeaturedProjects();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImage]);
+  
+  return (
+    <Section id="projects" title="Featured Projects">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {featuredProjects.map((project, index) => (
+          <ProjectCard 
+            key={project.id} 
+            project={project} 
+            index={index} 
+            onViewArchitecture={setSelectedImage}
+          />
         ))}
       </div>
+      <div className="text-center mt-10">
+        <Link 
+          href="/projects"
+          className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-accent-primary to-accent-secondary text-white font-bold rounded-full hover:shadow-lg hover:shadow-accent-primary/25 transition-all duration-300 transform hover:-translate-y-0.5"
+        >
+          View All Projects <FaArrowRight />
+        </Link>
+      </div>
+
+      {/* Global Fullscreen Image Modal via Portal */}
+      {mounted && selectedImage && createPortal(
+        <div 
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative w-full max-w-6xl h-full flex items-center justify-center" onClick={e => e.stopPropagation()}>
+            <button 
+              className="absolute top-0 right-0 text-white hover:text-accent-primary transition-colors bg-black/80 p-3 rounded-full z-50 hover:bg-black"
+              onClick={() => setSelectedImage(null)}
+            >
+              <FaXmark size={24} />
+            </button>
+            <img 
+              src={selectedImage} 
+              alt="Architecture Diagram" 
+              className="w-full h-full object-contain drop-shadow-2xl"
+            />
+          </div>
+        </div>,
+        document.body
+      )}
     </Section>
   );
 };

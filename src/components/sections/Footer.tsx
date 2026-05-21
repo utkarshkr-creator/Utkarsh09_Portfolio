@@ -1,9 +1,10 @@
 import React from 'react';
 import { FaGithub, FaTwitter, FaLinkedin, FaEnvelope, FaChartLine } from 'react-icons/fa6';
+import { SiCodeforces, SiLeetcode } from 'react-icons/si';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="py-12 border-t border-glass-border dark:border-t-2 dark:border-[#03DAC6] text-center bg-bg-primary dark:bg-[#0a0a0a]">
+    <footer className="py-12 border-t border-glass-border dark:border-t-2 dark:border-[#D4A574] text-center bg-bg-primary dark:bg-[#0a0a0a]">
       <div className="container mx-auto px-6">
         <div className="flex justify-center gap-8 mb-6 flex-wrap">
           <a href="https://github.com/utkarshkr-creator" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-text-secondary dark:text-gray-400 hover:text-accent-primary transition-colors">
@@ -21,9 +22,15 @@ export const Footer: React.FC = () => {
           <a href="https://codolio.com/profile/DarkGradiator" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-text-secondary dark:text-gray-400 hover:text-accent-primary transition-colors">
             <FaChartLine /> Codolio
           </a>
+          <a href="https://codeforces.com/profile/Utkarsh_09" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-text-secondary dark:text-gray-400 hover:text-red-500 transition-colors">
+            <SiCodeforces /> Codeforces
+          </a>
+          <a href="https://leetcode.com/u0904" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-text-secondary dark:text-gray-400 hover:text-yellow-500 transition-colors">
+            <SiLeetcode /> LeetCode
+          </a>
         </div>
         <p className="text-sm text-text-muted dark:text-gray-500">
-          © 2025 Utkarsh Kumar. All rights reserved.
+          © 2026 Utkarsh Kumar. All rights reserved.
         </p>
       </div>
     </footer>
